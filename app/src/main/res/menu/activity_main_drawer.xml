@@ -1,0 +1,63 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--
+    <group android:checkableBehavior="single">
+--><item android:title="">
+        <menu>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/ic_home_white_24dp"
+            android:iconTint="@color/colorPrimary"
+            android:title="Home" />
+        <item
+            android:id="@+id/resident_preapprove"
+            android:title="Invite Visitors " />
+            <item
+            android:id="@+id/resident_preapproved_list"
+            android:title="Invited Visitors List " />
+
+        <item
+            android:id="@+id/resident_service"
+            android:title="My Service Providers " />
+        <item
+            android:id="@+id/residen_profile"
+            android:title="My Profile " />
+            <item
+                android:id="@+id/resident_support"
+                android:title="Support " />
+       <!-- <item
+            android:id="@+id/resident_logout"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Logout " />-->
+           <!-- <item
+            android:id="@+id/resident_support"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Support " />
+-->
+        </menu>
+    </item>
+
+<!--
+    </group>
+-->
+    </menu>
+
+   <!-- <item android:title="SETTINGS">
+        <menu>
+            &lt;!&ndash;<item
+                android:id="@+id/resident_profile"
+                android:title="Profile " />
+            <item
+                android:id="@+id/resident_logout"
+                android:title="Logout " />
+            <item
+                android:id="@+id/resident_preapprove"
+                android:title="PreApprove " />&ndash;&gt;
+            &lt;!&ndash;<item
+                android:id="@+id/exit_visitors"
+                android:title="Exit " />
+            <item
+                android:id="@+id/exitD_visitors"
+                android:title="List " />&ndash;&gt;
+        </menu>
+    </item>&ndash;&gt;-->

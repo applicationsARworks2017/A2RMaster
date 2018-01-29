@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">A2R Master</string>
+
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+    <string name="MobileNumber">Primary Mobile Number<font color='#FF0000'>*</font></string>
+    <string name="MobileNumber1">Secondaray Mobile Number</string>
+    <string name="Fullname">Fullname<font color='#FF0000'>*</font></string>
+    <string name="Email">Email<font color='#FF0000'>*</font></string>
+    <string name="Apartment">Apartment Name<font color='#FF0000'>*</font></string>
+    <string name="Flat">Flat Name<font color='#FF0000'>*</font></string>
+    <string name="Visitor">Visitor name<font color='#FF0000'>*</font></string>
+    <string name="Visitorarrivaldt">Visitor arrival date<font color='#FF0000'>*</font></string>
+    <string name="Visitorlvngdt">Visitor leaving date<font color='#FF0000'>*</font></string>
+    <string name="Visitorcmngfrm">Coming from<font color='#FF0000'>*</font></string>
+    <string name="Visitorphone">Visitor phone number<font color='#FF0000'>*</font></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
