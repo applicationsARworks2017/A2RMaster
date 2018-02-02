@@ -9,6 +9,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/rel_requsetservice"
         android:layout_height="100dp">
+
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -26,6 +27,15 @@
             android:layout_marginTop="20dp"
             android:id="@+id/tv_rest_name"
             android:textColor="@color/black"/>
+        <ImageView
+            android:id="@+id/rest_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/ic_mode_edit_black_24dp"
+            android:backgroundTint="@color/colorPrimaryDark"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

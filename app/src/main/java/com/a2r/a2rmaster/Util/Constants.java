@@ -8,11 +8,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +24,7 @@ public class Constants {
     public static String LOGIN="users/loginMobile.json";
     public static String ADDSHOPS="shops/add.json";
     public static String SHOPLIST="shops/index.json";
+    public static String EDITRESSTRAUNT="shops/add.json";
 
 
     public static  String SHAREDPREFERENCE_KEY="a2rmaster";

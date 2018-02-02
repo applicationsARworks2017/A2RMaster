@@ -2,7 +2,10 @@ package com.a2r.a2rmaster.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.a2r.a2rmaster.Activity.RestruntEdit;
 import com.a2r.a2rmaster.Pojo.Restaurants;
 import com.a2r.a2rmaster.R;
 
@@ -22,7 +26,7 @@ import java.util.ArrayList;
 public class RestaurantAdapter extends BaseAdapter{
     private Context _context;
     ArrayList<Restaurants> myList;
-    Holder holder;
+    Holder holder,holder1;
 
     public RestaurantAdapter(FragmentActivity activity, ArrayList<Restaurants> rList) {
     this._context=activity;
@@ -45,6 +49,7 @@ public class RestaurantAdapter extends BaseAdapter{
     }
     private class Holder{
         TextView tv_rest_name,details;
+        ImageView rest_edit;
 
     }
     @Override
@@ -57,15 +62,54 @@ public class RestaurantAdapter extends BaseAdapter{
             view = mInflater.inflate(R.layout.rest_list, viewGroup, false);
             holder.tv_rest_name=(TextView)view.findViewById(R.id.tv_rest_name);
             holder.details=(TextView) view.findViewById(R.id.details);
+            holder.rest_edit=(ImageView)view.findViewById(R.id.rest_edit);
             view.setTag(holder);
         }
         else{
             holder = (Holder) view.getTag();
+            holder.rest_edit.setTag(holder);
         }
         holder.tv_rest_name.setTag(i);
         holder.details.setTag(i);
         holder.tv_rest_name.setText(_pos.getTitle());
         holder.details.setText("Phone :"+_pos.getMobile_no()+","+"Address :"+_pos.getAddress());
+
+
+        holder.rest_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder1=(Holder) view.getTag();
+                AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                builder.setMessage("Do you want to edit the Details?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                String res_title=_pos.getTitle();
+                                String res_mobile=_pos.getMobile_no();
+                                String res_address=_pos.getAddress();
+                                String res_gst=_pos.getGst();
+                                String res_addedby=_pos.getAdded_by();
+                                String res_edit_id=_pos.getId();
+                                Intent i=new Intent(_context,RestruntEdit.class);
+                                i.putExtra("title",res_title);
+                                i.putExtra("mobile",res_mobile);
+                                i.putExtra("address",res_address);
+                                i.putExtra("gst",res_gst);
+                                i.putExtra("addedby",res_addedby);
+                                i.putExtra("editid",res_edit_id);
+                                _context.startActivity(i);
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
         return view;
     }
 }
