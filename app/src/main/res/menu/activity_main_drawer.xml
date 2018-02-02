@@ -11,14 +11,17 @@
             android:title="Home" />
         <item
             android:id="@+id/resident_preapprove"
-            android:title="Invite Visitors " />
+            android:title="Add Users" />
             <item
             android:id="@+id/resident_preapproved_list"
-            android:title="Invited Visitors List " />
+            android:title="Items" />
 
         <item
             android:id="@+id/resident_service"
-            android:title="My Service Providers " />
+            android:title="Stocks" />
+            <item
+                android:id="@+id/reports"
+                android:title="Reports" />
         <item
             android:id="@+id/residen_profile"
             android:title="My Profile " />

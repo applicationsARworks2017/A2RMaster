@@ -40,17 +40,13 @@ public class SplashScreen extends AppCompatActivity {
                     //Intent i = new Intent(SplashScreen.this, MainActivity.class);
 
                     if (user_id == null || user_id.trim().length() < 0) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
+
                                 Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(intent);
-                                finish();
-                            }
-                        }, 3000);
+                                //finish();
                     }
                     else {
                         Intent i = new Intent(SplashScreen.this, Home.class);
