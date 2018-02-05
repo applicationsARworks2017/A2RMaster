@@ -10,10 +10,10 @@
             android:iconTint="@color/colorPrimary"
             android:title="Home" />
         <item
-            android:id="@+id/resident_preapprove"
-            android:title="Add Users" />
+            android:id="@+id/a2r_users"
+            android:title="Users" />
             <item
-            android:id="@+id/resident_preapproved_list"
+            android:id="@+id/a2r_items"
             android:title="Items" />
 
         <item

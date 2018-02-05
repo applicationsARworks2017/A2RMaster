@@ -24,7 +24,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     Button lin_signin;
-    EditText user_name,user_password;
+    EditText u_mobile,user_password;
     RelativeLayout login_rel;
     List <User> list;
 
@@ -35,22 +35,22 @@ public class LoginActivity extends AppCompatActivity {
         //list=new ArrayList<>();
         lin_signin=(Button) findViewById(R.id.lin_signin);
         login_rel=(RelativeLayout)findViewById(R.id.login_rel);
-        user_name=(EditText)findViewById(R.id.et_username);
+        u_mobile=(EditText)findViewById(R.id.et_username);
         user_password=(EditText)findViewById(R.id.et_password);
         lin_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=user_name.getText().toString().trim();
+                String mobile=u_mobile.getText().toString().trim();
                 String password=user_password.getText().toString().trim();
 
-                if(user_name.getText().toString().trim().length()<=0){
-                    showSnackBar("Invalid username");
+                if(u_mobile.getText().toString().trim().length()<=0){
+                    showSnackBar("Invalid Mobile Number");
                 }
                 else if(user_password.getText().toString().trim().length()<=0){
                     showSnackBar("Invalid password");
                 }
                 else{
-                    calltoAPI(name,password);
+                    calltoAPI(mobile,password);
                 }
             }
         });
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         });*/
     }
 
-    private void calltoAPI(String name, String password) {
+    private void calltoAPI(String mobl, String password) {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("Validating. Please wait...");
         pd.show();
@@ -71,9 +71,9 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("username", name);
+            jsonObject.put("mobile", mobl);
             jsonObject.put("password", password);
-            jsonObject.put("user_type_id", "1");
+            jsonObject.put("user_type_id", "2");
         } catch (JSONException e) {
             e.printStackTrace();
         }

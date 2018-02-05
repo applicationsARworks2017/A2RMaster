@@ -50,6 +50,10 @@
             android:label="Edit Restaurants"
             android:parentActivityName=".Activity.Home"
             android:theme="@style/AppThemetwo"></activity>
+        <activity android:name=".Activity.ItemType"
+            android:label="Product Type"
+            android:parentActivityName=".Activity.Home"
+            android:theme="@style/AppThemetwo"></activity>
     </application>
 
 </manifest>

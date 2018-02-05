@@ -2,6 +2,7 @@ package com.a2r.a2rmaster.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,17 +10,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a2r.a2rmaster.Fragment.HomeFragment;
+import com.a2r.a2rmaster.Fragment.ProductFragment;
+import com.a2r.a2rmaster.Fragment.UsersFragment;
 import com.a2r.a2rmaster.R;
-import com.a2r.a2rmaster.SplashScreen;
 import com.a2r.a2rmaster.Util.Constants;
 
 public class Home extends AppCompatActivity {
@@ -28,6 +28,8 @@ public class Home extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     private static final String TAG_HOME = "Home";
+    private static final String TAG_USERS = "Users";
+    private static final String TAG_CATEGORY = "Category List";
     public static String CURRENT_TAG = TAG_HOME;
     public static int item_id;
     private Handler mHandler;
@@ -108,11 +110,15 @@ public class Home extends AppCompatActivity {
                         item_id = R.id.nav_home;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    /*case R.id.resident_profile:
-                        item_id = R.id.resident_profile;
-                        CURRENT_TAG = TAG_PROFILE;
+                   case R.id.a2r_users:
+                        item_id = R.id.a2r_users;
+                        CURRENT_TAG = TAG_USERS;
                         break;
-                    case R.id.resident_preapprove:
+                        case R.id.a2r_items:
+                        item_id = R.id.a2r_items;
+                        CURRENT_TAG = TAG_CATEGORY;
+                        break;
+                     /*case R.id.resident_preapprove:
                         item_id = R.id.resident_preapprove;
                         CURRENT_TAG = TAG_PREAPPROVE;
                         break;
@@ -212,6 +218,16 @@ public class Home extends AppCompatActivity {
                HomeFragment homeFragment = new HomeFragment();
                 toolbar.setTitle("Home");
                 return homeFragment;
+            case R.id.a2r_users:
+                // Entry for visitors
+                UsersFragment user_frag = new UsersFragment();
+                toolbar.setTitle("Users");
+                return user_frag;
+                case R.id.a2r_items:
+                // Entry for visitors
+                ProductFragment product_frag = new ProductFragment();
+                toolbar.setTitle("Category List");
+                return product_frag;
             /* case R.id.resident_profile:
                 // Entry for visitors
                 ResidentProfile profile = new ResidentProfile();

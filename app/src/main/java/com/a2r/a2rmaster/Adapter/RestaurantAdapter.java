@@ -72,7 +72,11 @@ public class RestaurantAdapter extends BaseAdapter{
         holder.tv_rest_name.setTag(i);
         holder.details.setTag(i);
         holder.tv_rest_name.setText(_pos.getTitle());
-        holder.details.setText("Phone :"+_pos.getMobile_no()+","+"Address :"+_pos.getAddress());
+        String mobile=_pos.getMobile_no();
+        if(mobile==null){
+            mobile="Not Given";
+        }
+        holder.details.setText("Phone :"+mobile+","+"Address :"+_pos.getAddress());
 
 
         holder.rest_edit.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,9 @@ public class RestaurantAdapter extends BaseAdapter{
                             public void onClick(DialogInterface dialog, int id) {
                                 String res_title=_pos.getTitle();
                                 String res_mobile=_pos.getMobile_no();
+                                if(res_mobile==null){
+                                    res_mobile="Not Given";
+                                }
                                 String res_address=_pos.getAddress();
                                 String res_gst=_pos.getGst();
                                 String res_addedby=_pos.getAdded_by();

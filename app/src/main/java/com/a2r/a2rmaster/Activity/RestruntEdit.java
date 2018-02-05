@@ -87,6 +87,11 @@ public class RestruntEdit extends AppCompatActivity {
             res_edit_id = extras.getString("editid");
         }
 
+//        if(res_mobile==null){
+//            res_mobile="Not Given";
+//
+//        }
+
         et_name.setText(res_title);
         et_phone.setText(res_mobile);
         et_add.setText(res_address);
@@ -191,13 +196,13 @@ public class RestruntEdit extends AppCompatActivity {
 
                 try {
                     MultipartUtility multipart = new MultipartUtility(link, charset);
-                    multipart.addFormField("added_by", res_added_by);
-                    multipart.addFormField("title", params[0]);
-                    multipart.addFormField("address", params[2]);
-                    multipart.addFormField("gst", params[3]);
-                    multipart.addFormField("save_from", "mobile");
-                    multipart.addFormField("mobile_no", params[1]);
-                    multipart.addFormField("id", res_edit_id);
+                    multipart.addFormField("added_by",res_added_by);
+                    multipart.addFormField("title",params[0]);
+                    multipart.addFormField("address",params[2]);
+                    multipart.addFormField("gst",params[3]);
+                    multipart.addFormField("save_from","mobile");
+                    multipart.addFormField("mobile_no",params[1]);
+                    multipart.addFormField("id",res_edit_id);
                     if (imgfile != null) {
                         multipart.addFilePart("logo", imgfile);
                     }

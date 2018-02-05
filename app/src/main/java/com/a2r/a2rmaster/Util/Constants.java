@@ -24,7 +24,9 @@ public class Constants {
     public static String LOGIN="users/loginMobile.json";
     public static String ADDSHOPS="shops/add.json";
     public static String SHOPLIST="shops/index.json";
-    public static String EDITRESSTRAUNT="shops/add.json";
+    public static String PRODUCTCATEGORY="ProductCategories/index.json";
+    public static String PRODUCTTYPE="ProductTypes/index.json";
+    public static String EDITRESSTRAUNT="shops/edit.json";
 
 
     public static  String SHAREDPREFERENCE_KEY="a2rmaster";
