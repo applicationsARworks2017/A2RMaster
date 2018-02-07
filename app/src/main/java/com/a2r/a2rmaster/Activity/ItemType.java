@@ -44,7 +44,7 @@ public class ItemType extends AppCompatActivity {
         iList=new ArrayList<>();
         no_rest=(TextView)findViewById(R.id.no_rest);
         rest_swipe=(SwipeRefreshLayout)findViewById(R.id.rest_swipe);
-        rest_list=(ListView)findViewById(R.id.cat_list);
+        rest_list=(ListView)findViewById(R.id.pr_type_list);
         getItemList();
         rest_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -73,13 +73,13 @@ public class ItemType extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("added_by", added_by);
-            jsonObject.put("is_approved", is_approved);
+            jsonObject.put("shop_id", added_by);
+            jsonObject.put("product_category_id", is_approved);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        new APIManager().postJSONArrayAPI(Constants.BASEURL+Constants.PRODUCTTYPE,"productTypes",jsonObject, ItemList.class,this,
+        new APIManager().postJSONArrayAPI(Constants.BASEURL+Constants.PRODUCTSCATEGORY,"products",jsonObject, ItemList.class,this,
                 new APIManager.APIManagerInterface() {
                     @Override
                     public void onSuccess(Object resultObj) {

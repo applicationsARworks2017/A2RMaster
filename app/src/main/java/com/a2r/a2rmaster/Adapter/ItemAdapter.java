@@ -45,7 +45,7 @@ public class ItemAdapter extends BaseAdapter{
         return i;
     }
     private class Holder{
-        TextView it_name,details;
+        TextView it_name,cat_cost,cat_name;
         ImageView sub_category;
 
     }
@@ -58,15 +58,30 @@ public class ItemAdapter extends BaseAdapter{
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = mInflater.inflate(R.layout.item_list, viewGroup, false);
             holder.it_name=(TextView)view.findViewById(R.id.it_name);
+            holder.cat_cost=(TextView)view.findViewById(R.id.cat_cost);
+            holder.cat_name=(TextView)view.findViewById(R.id.cat_name);
+            holder.sub_category=(ImageView)view.findViewById(R.id.idntyf_v_n);
 
             view.setTag(holder);
         }
         else{
             holder = (Holder) view.getTag();
             holder.it_name.setTag(holder);
-
+            holder.sub_category.setTag(holder);
+            holder.cat_cost.setTag(holder);
+            holder.cat_name.setTag(holder);
         }
         holder.it_name.setText(_pos.getTitle());
+        holder.cat_name.setText(_pos.getProduct_category_id());
+        holder.cat_cost.setText(_pos.getPrice());
+        String product_id=_pos.getProduct_type_id();
+        if(product_id.contentEquals("1")){
+         holder.sub_category.setImageResource(R.drawable.veg);
+        }
+        else{
+            holder.sub_category.setImageResource(R.drawable.nonveg);
+
+        }
 
         return view;
     }

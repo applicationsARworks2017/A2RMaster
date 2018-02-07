@@ -26,6 +26,7 @@ public class Constants {
     public static String SHOPLIST="shops/index.json";
     public static String PRODUCTCATEGORY="ProductCategories/index.json";
     public static String PRODUCTTYPE="ProductTypes/index.json";
+    public static String PRODUCTSCATEGORY="products/index.json";
     public static String EDITRESSTRAUNT="shops/edit.json";
 
 

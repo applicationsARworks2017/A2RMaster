@@ -4,27 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="Enter name to search"
-        android:paddingLeft="5dp"
-        android:id="@+id/itemsearch"
-        android:layout_marginRight="40dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="@mipmap/ic_search_black_24dp"
-        android:layout_marginRight="5dp"
-        android:padding="5dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/itemsearch"
         android:id="@+id/st"
         android:background="@color/white"
         android:layout_marginTop="10dp">
@@ -47,9 +32,9 @@
             android:id="@+id/it_name"
             android:textColor="@color/black"/>
         <ImageView
+            android:id="@+id/idntyf_v_n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/veg"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"/>
         <TextView
@@ -61,18 +46,19 @@
             android:layout_marginTop="10dp"
             android:singleLine="true"
             android:layout_marginRight="20dp"
-            android:id="@+id/it_cat"
+            android:id="@+id/cat_name"
             android:text="Indian, Chineese, Fastfood"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_below="@+id/it_cat"
+           android:layout_below="@+id/cat_name"
             android:layout_toRightOf="@+id/it_image"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:id="@+id/it_cost"
+            android:id="@+id/cat_cost"
             android:text="Rs. 100.00"
             android:textColor="@color/colorPrimaryDark"/>
 
     </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
