@@ -5,6 +5,7 @@
     <color name="colorAccent">#ae0a11</color>
     <color name="light_red">#E57373</color>
     <color name="background">#d8d8d8</color>
+    <color name="light_background">#ececec</color>
     <color name="homebackground">#f8e4c9</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000</color>

@@ -2,6 +2,7 @@ package com.a2r.a2rmaster.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,10 +11,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a2r.a2rmaster.Activity.ItemType;
 import com.a2r.a2rmaster.Adapter.PCategoryAdapter;
 import com.a2r.a2rmaster.Pojo.CategoryList;
 import com.a2r.a2rmaster.R;
@@ -88,12 +91,21 @@ public class ProductFragment extends Fragment {
                 getCategoryList();
             }
         });
+        rest_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CategoryList categoryList=(CategoryList)rest_list.getItemAtPosition(i);
+                Intent intent=new Intent(getActivity(),ItemType.class);
+                intent.putExtra("ID",categoryList.getId());
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
     private void getCategoryList() {
         if(CheckInternet.getNetworkConnectivityStatus(getActivity())){
-            calltoAPI(user_id,"Y");
+            calltoAPI("","");
         }
         else{
             rest_swipe.setVisibility(View.GONE);
@@ -109,8 +121,7 @@ public class ProductFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("added_by", added_by);
-            jsonObject.put("is_approved", is_approved);
+            jsonObject.put("", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }

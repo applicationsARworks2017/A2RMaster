@@ -3,27 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.a2r.a2rmaster.Fragment.HomeFragment">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="Enter name to search"
-        android:paddingLeft="5dp"
-        android:id="@+id/itemsearch"
-        android:layout_marginRight="40dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="@mipmap/ic_search_black_24dp"
-        android:layout_marginRight="5dp"
-        android:padding="5dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:layout_marginTop="10dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/itemsearch"
         android:layout_marginTop="10dp">
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
@@ -33,13 +16,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@null"
+                android:background="@color/light_background"
                 android:id="@+id/pr_type_list">
             </ListView>
         </android.support.v4.widget.SwipeRefreshLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Restaurant Found"
+            android:text="No Item Found"
             android:layout_centerInParent="true"
             android:visibility="gone"
             android:id="@+id/no_rest"/>

@@ -5,7 +5,7 @@ package com.a2r.a2rmaster.Pojo;
  */
 
 public class ItemList {
-    String id,title,is_active,created,modified,product_type_id,product_category_id,price,added_by,shop_id,image;
+    String id,name,is_active,created,modified,product_type_id,product_category_id,price,added_by,shop_id,image;
 
     public String getProduct_type_id() {
         return product_type_id;
@@ -63,12 +63,12 @@ public class ItemList {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getname() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setname(String title) {
+        this.name = title;
     }
 
     public String getIs_active() {
@@ -96,7 +96,7 @@ public class ItemList {
     }
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", title = " + title + ", is_active = " + is_active +
+        return "ClassPojo [id = " + id + ", title = " + name + ", is_active = " + is_active +
                 ", modified = " + modified + ", created = " + created+ ",product_type_id="+product_type_id+"" +
                 ",product_category_id="+product_category_id+",price="+price+",added_by="+added_by+",shop_id="+shop_id+",image="+image+"]";
     }

@@ -87,11 +87,6 @@ public class RestruntEdit extends AppCompatActivity {
             res_edit_id = extras.getString("editid");
         }
 
-//        if(res_mobile==null){
-//            res_mobile="Not Given";
-//
-//        }
-
         et_name.setText(res_title);
         et_phone.setText(res_mobile);
         et_add.setText(res_address);

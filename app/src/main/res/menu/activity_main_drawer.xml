@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!--
-    <group android:checkableBehavior="single">
---><item android:title="">
-        <menu>
+    <!--
+        <group android:checkableBehavior="single">
+    --><item android:title="">
+    <menu>
         <item
             android:id="@+id/nav_home"
             android:icon="@mipmap/ic_home_white_24dp"
@@ -11,56 +11,35 @@
             android:title="Home" />
         <item
             android:id="@+id/a2r_users"
-            android:title="Users" />
-            <item
+            android:title="Users"
+            android:icon="@mipmap/ic_supervisor_account_black_24dp"
+            android:iconTint="@color/colorPrimary"/>
+        <item
             android:id="@+id/a2r_items"
-            android:title="Items" />
+            android:title="Items"
+            android:icon="@mipmap/ic_restaurant_black_24dp"
+            android:iconTint="@color/colorPrimary"/>
 
         <item
-            android:id="@+id/resident_service"
-            android:title="Stocks" />
-            <item
-                android:id="@+id/reports"
-                android:title="Reports" />
+            android:id="@+id/stocks"
+            android:title="Stocks"
+            android:icon="@mipmap/ic_kitchen_black_24dp"
+            android:iconTint="@color/colorPrimary"/>
         <item
-            android:id="@+id/residen_profile"
+            android:id="@+id/reports"
+            android:icon="@mipmap/ic_receipt_black_24dp"
+            android:iconTint="@color/colorPrimary"
+            android:title="Reports" />
+        <item
+            android:id="@+id/Profile"
             android:title="My Profile " />
-            <item
-                android:id="@+id/resident_support"
-                android:title="Support " />
-       <!-- <item
-            android:id="@+id/resident_logout"
-            android:icon="@drawable/ic_power_settings_new_black_24dp"
-            android:title="Logout " />-->
-           <!-- <item
+        <item
             android:id="@+id/resident_support"
-            android:icon="@drawable/ic_power_settings_new_black_24dp"
             android:title="Support " />
--->
-        </menu>
-    </item>
 
-<!--
-    </group>
--->
     </menu>
+</item>
+</menu>
 
-   <!-- <item android:title="SETTINGS">
-        <menu>
-            &lt;!&ndash;<item
-                android:id="@+id/resident_profile"
-                android:title="Profile " />
-            <item
-                android:id="@+id/resident_logout"
-                android:title="Logout " />
-            <item
-                android:id="@+id/resident_preapprove"
-                android:title="PreApprove " />&ndash;&gt;
-            &lt;!&ndash;<item
-                android:id="@+id/exit_visitors"
-                android:title="Exit " />
-            <item
-                android:id="@+id/exitD_visitors"
-                android:title="List " />&ndash;&gt;
-        </menu>
-    </item>&ndash;&gt;-->
+
+

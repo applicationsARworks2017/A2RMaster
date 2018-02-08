@@ -32,7 +32,7 @@ public class ItemType extends AppCompatActivity {
     TextView no_rest;
     SwipeRefreshLayout rest_swipe;
     ListView rest_list;
-    String user_id;
+    String user_id,product_category_id;
     ArrayList<ItemList> iList;
     ItemAdapter itemAdapter;
     @Override
@@ -45,6 +45,11 @@ public class ItemType extends AppCompatActivity {
         no_rest=(TextView)findViewById(R.id.no_rest);
         rest_swipe=(SwipeRefreshLayout)findViewById(R.id.rest_swipe);
         rest_list=(ListView)findViewById(R.id.pr_type_list);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
+            product_category_id = extras.getString("ID");
+        }
         getItemList();
         rest_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -57,7 +62,7 @@ public class ItemType extends AppCompatActivity {
     }
     private void getItemList() {
         if(CheckInternet.getNetworkConnectivityStatus(this)){
-            calltoAPI(user_id,"Y");
+            calltoAPI(product_category_id,"");
         }
         else{
             rest_swipe.setVisibility(View.GONE);
@@ -73,8 +78,8 @@ public class ItemType extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("shop_id", added_by);
-            jsonObject.put("product_category_id", is_approved);
+            jsonObject.put("shop_id", "");
+            jsonObject.put("product_category_id", product_category_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -93,6 +98,7 @@ public class ItemType extends AppCompatActivity {
                     public void onError(String error) {
                         rest_swipe.setVisibility(View.GONE);
                         no_rest.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
                         pd.dismiss();
                     }
                 });

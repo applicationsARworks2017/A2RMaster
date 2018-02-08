@@ -71,7 +71,7 @@ public class ItemAdapter extends BaseAdapter{
             holder.cat_cost.setTag(holder);
             holder.cat_name.setTag(holder);
         }
-        holder.it_name.setText(_pos.getTitle());
+        holder.it_name.setText(_pos.getname());
         holder.cat_name.setText(_pos.getProduct_category_id());
         holder.cat_cost.setText(_pos.getPrice());
         String product_id=_pos.getProduct_type_id();

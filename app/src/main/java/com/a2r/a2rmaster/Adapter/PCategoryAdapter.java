@@ -2,16 +2,15 @@ package com.a2r.a2rmaster.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.a2r.a2rmaster.Activity.ItemType;
 import com.a2r.a2rmaster.Pojo.CategoryList;
 import com.a2r.a2rmaster.R;
 
@@ -48,6 +47,7 @@ public class PCategoryAdapter extends BaseAdapter {
     private class Holder{
         TextView tv_category_name,details;
         ImageView sub_category;
+        RelativeLayout first;
 
     }
     @Override
@@ -60,6 +60,7 @@ public class PCategoryAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.category_list, viewGroup, false);
             holder.tv_category_name=(TextView)view.findViewById(R.id.tv_category_name);
             holder.sub_category=(ImageView) view.findViewById(R.id.sub_category);
+            holder.first=(RelativeLayout)view.findViewById(R.id.first);
             view.setTag(holder);
         }
         else{
@@ -68,7 +69,7 @@ public class PCategoryAdapter extends BaseAdapter {
             holder.sub_category.setTag(holder);
         }
         holder.tv_category_name.setText(_pos.getTitle());
-        holder.sub_category.setOnClickListener(new View.OnClickListener() {
+        /*holder.first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder1=(Holder) view.getTag();
@@ -76,7 +77,7 @@ public class PCategoryAdapter extends BaseAdapter {
                 Intent i=new Intent(_context,ItemType.class);
                _context.startActivity(i);
             }
-        });
+        });*/
         return view;
     }
 }
