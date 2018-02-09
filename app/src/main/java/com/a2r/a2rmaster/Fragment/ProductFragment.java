@@ -16,9 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a2r.a2rmaster.Activity.ChooseProduct;
 import com.a2r.a2rmaster.Activity.ItemType;
 import com.a2r.a2rmaster.Adapter.PCategoryAdapter;
+import com.a2r.a2rmaster.Adapter.RestaurantAdapter;
+import com.a2r.a2rmaster.Adapter.RestaurantListAdapter;
 import com.a2r.a2rmaster.Pojo.CategoryList;
+import com.a2r.a2rmaster.Pojo.Restaurants;
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.APIManager;
 import com.a2r.a2rmaster.Util.CheckInternet;
@@ -43,14 +47,13 @@ public class ProductFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private HomeFragment.OnFragmentInteractionListener mListener;
-
-    FloatingActionButton add_rest;
     TextView no_rest;
     SwipeRefreshLayout rest_swipe;
     ListView rest_list;
     String user_id;
-    ArrayList<CategoryList> cList;
-    PCategoryAdapter categoryAdapter;
+    ArrayList<Restaurants> rList;
+    RestaurantListAdapter restaurantAdapter;
+    public static String rest_id;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -79,33 +82,32 @@ public class ProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_product, container, false);
         user_id = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
-        cList=new ArrayList<>();
+        rList=new ArrayList<>();
         no_rest=(TextView)view.findViewById(R.id.no_rest);
         rest_swipe=(SwipeRefreshLayout)view.findViewById(R.id.rest_swipe);
-        rest_list=(ListView)view.findViewById(R.id.cat_list);
-        getCategoryList();
+        rest_list=(ListView)view.findViewById(R.id.rest_list);
+        getMyRestaurants();
         rest_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 rest_swipe.setRefreshing(false);
-                getCategoryList();
+                getMyRestaurants();
             }
         });
         rest_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CategoryList categoryList=(CategoryList)rest_list.getItemAtPosition(i);
-                Intent intent=new Intent(getActivity(),ItemType.class);
-                intent.putExtra("ID",categoryList.getId());
+                Restaurants restaurants=(Restaurants)rList.get(i);
+                rest_id=restaurants.getId();
+                Intent intent=new Intent(getActivity(), ChooseProduct.class);
                 startActivity(intent);
             }
         });
         return view;
     }
-
-    private void getCategoryList() {
+    private void getMyRestaurants() {
         if(CheckInternet.getNetworkConnectivityStatus(getActivity())){
-            calltoAPI("","");
+            calltoAPI(user_id,"Y");
         }
         else{
             rest_swipe.setVisibility(View.GONE);
@@ -121,18 +123,19 @@ public class ProductFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("", "");
+            jsonObject.put("added_by", added_by);
+            jsonObject.put("is_approved", is_approved);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        new APIManager().postJSONArrayAPI(Constants.BASEURL+Constants.PRODUCTCATEGORY,"productCategories",jsonObject, CategoryList.class,getActivity(),
+        new APIManager().postJSONArrayAPI(Constants.BASEURL+Constants.SHOPLIST,"shops",jsonObject, Restaurants.class,getActivity(),
                 new APIManager.APIManagerInterface() {
                     @Override
                     public void onSuccess(Object resultObj) {
-                        cList=(ArrayList<CategoryList>) resultObj;
-                        categoryAdapter = new PCategoryAdapter(getActivity(),cList );
-                        rest_list.setAdapter(categoryAdapter);
+                        rList=(ArrayList<Restaurants>) resultObj;
+                        restaurantAdapter = new RestaurantListAdapter(getActivity(),rList );
+                        rest_list.setAdapter(restaurantAdapter);
                         pd.cancel();
                     }
 
@@ -144,6 +147,7 @@ public class ProductFragment extends Fragment {
                     }
                 });
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -15,7 +15,6 @@
         android:roundIcon="@drawable/logo_master"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name=".Util.GenericFileProvider"
             android:authorities="com.a2r.a2rmaster"
@@ -26,7 +25,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,24 +34,31 @@
         </activity>
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.Home">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
-        <activity android:name=".Activity.AddRestaurant"
+        <activity
+            android:name=".Activity.AddRestaurant"
             android:label="Add Restaurants"
             android:parentActivityName=".Activity.Home"
-            android:theme="@style/AppThemetwo"></activity>
-        <activity android:name=".Activity.RestruntEdit"
+            android:theme="@style/AppThemetwo" />
+        <activity
+            android:name=".Activity.RestruntEdit"
             android:label="Edit Restaurants"
             android:parentActivityName=".Activity.Home"
-            android:theme="@style/AppThemetwo"></activity>
-        <activity android:name=".Activity.ItemType"
-            android:label="Product Type"
-            android:parentActivityName=".Activity.Home"
-            android:theme="@style/AppThemetwo"></activity>
+            android:theme="@style/AppThemetwo" />
+        <activity
+            android:name=".Activity.ItemType"
+            android:label="Item List"
+            android:parentActivityName=".Activity.ChooseProduct"
+            android:theme="@style/AppThemetwo" />
+        <activity android:name=".Activity.ChooseProduct"></activity>
     </application>
 
 </manifest>

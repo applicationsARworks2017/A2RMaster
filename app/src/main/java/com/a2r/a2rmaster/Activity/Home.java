@@ -226,7 +226,7 @@ public class Home extends AppCompatActivity {
                 case R.id.a2r_items:
                 // Entry for visitors
                 ProductFragment product_frag = new ProductFragment();
-                toolbar.setTitle("Category List");
+                toolbar.setTitle("Select Restaurants");
                 return product_frag;
             /* case R.id.resident_profile:
                 // Entry for visitors

@@ -4,6 +4,7 @@ package com.a2r.a2rmaster.Util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -201,6 +202,8 @@ public class APIManager {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            Log.i("Array",response.toString());
+
                             try {
                                 if (response.getJSONArray(resobjName)!=null) {
                                     Gson gson = new Gson();
@@ -232,15 +235,6 @@ public class APIManager {
                                 } else {
                                     if (listener != null) {
                                         listener.onError(response.getString("No Data Found"));
-                                    }
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                if (listener != null) {
-                                    try {
-                                        listener.onError(response.getString("message"));
-                                    } catch (JSONException e1) {
-                                        e1.printStackTrace();
                                     }
                                 }
                             } catch (Exception e) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a2r.a2rmaster.Adapter.ItemAdapter;
+import com.a2r.a2rmaster.Fragment.ProductFragment;
 import com.a2r.a2rmaster.Pojo.ItemList;
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.APIManager;
@@ -78,7 +79,7 @@ public class ItemType extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("shop_id", "");
+            jsonObject.put("shop_id", ProductFragment.rest_id);
             jsonObject.put("product_category_id", product_category_id);
         } catch (JSONException e) {
             e.printStackTrace();

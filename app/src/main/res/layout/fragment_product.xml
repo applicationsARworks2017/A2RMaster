@@ -6,25 +6,35 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.widget.SwipeRefreshLayout
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rest_swipe">
-            <ListView
+            tools:context="com.a2r.a2rmaster.Fragment.HomeFragment">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:background="@drawable/background"
-                android:id="@+id/cat_list">
-            </ListView>
-        </android.support.v4.widget.SwipeRefreshLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No Product Found"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:id="@+id/no_rest"/>
+                android:layout_height="match_parent">
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rest_swipe">
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rest_list">
+                    </ListView>
+                </android.support.v4.widget.SwipeRefreshLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Restaurant Found"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:id="@+id/no_rest"/>
+            </RelativeLayout>
+
+        </FrameLayout>
+
     </RelativeLayout>
 
 </FrameLayout>

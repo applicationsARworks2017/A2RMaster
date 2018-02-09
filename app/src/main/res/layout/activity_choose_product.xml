@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.a2r.a2rmaster.Activity.ChooseProduct">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/ChooseProduct_tool">
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:id="@+id/ChooseProduct_tool_back"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_arrow_back_white_24dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/white"
+            android:text="Choose Product"
+            android:textStyle="bold"
+            android:textSize="15dp"/>
+    </android.support.v7.widget.Toolbar>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ChooseProduct_tool"
+        android:id="@+id/rest_swipe">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:background="@drawable/background"
+            android:id="@+id/cat_list">
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Product Found"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/no_rest"/>
+</RelativeLayout>
+
