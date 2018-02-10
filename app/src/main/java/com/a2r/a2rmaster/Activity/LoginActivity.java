@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.APIManager;
+import com.a2r.a2rmaster.Util.CheckInternet;
 import com.a2r.a2rmaster.Util.Constants;
 import com.a2r.a2rmaster.Pojo.User;
 
@@ -50,7 +52,12 @@ public class LoginActivity extends AppCompatActivity {
                     showSnackBar("Invalid password");
                 }
                 else{
-                    calltoAPI(mobile,password);
+                    if(CheckInternet.getNetworkConnectivityStatus(LoginActivity.this)){
+                        calltoAPI(mobile, password);
+                    }
+                    else{
+                        showSnackBar("No Internet");
+                    }
                 }
             }
         });

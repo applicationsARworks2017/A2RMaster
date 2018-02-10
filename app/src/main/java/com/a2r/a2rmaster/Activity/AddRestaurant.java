@@ -56,7 +56,7 @@ import static com.a2r.a2rmaster.Util.Constants.modifyOrientation;
 public class AddRestaurant extends AppCompatActivity {
     ImageView iv_logo, iv_submit;
     Button bt_addlogo;
-    EditText et_name, et_phone, et_add, et_gst;
+    EditText et_name, et_phone, et_add, et_gst,et_table;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int CAMERA_REQUEST = 1888;
     String imPath,user_id;
@@ -79,6 +79,7 @@ public class AddRestaurant extends AppCompatActivity {
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_add = (EditText) findViewById(R.id.et_address);
         et_gst = (EditText) findViewById(R.id.et_gst);
+        et_table = (EditText) findViewById(R.id.et_table);
         addshop_rel=(RelativeLayout)findViewById(R.id.addshop_rel);
 
         bt_addlogo.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +116,9 @@ public class AddRestaurant extends AppCompatActivity {
         else if(et_phone.getText().toString().trim().length()<10){
             showSnackBar("Enter Valid Phone Number");
         }
+        else if(et_table.getText().toString().trim().length()<0){
+            showSnackBar("Enter Number of Table Available");
+        }
         else if(et_add.getText().toString().trim().length()<0){
             showSnackBar("Enter Address");
         }
@@ -128,6 +132,7 @@ public class AddRestaurant extends AppCompatActivity {
         String phone=et_phone.getText().toString().trim();
         String address=et_add.getText().toString().trim();
         String gst=et_gst.getText().toString().trim();
+        String no_of_table=et_table.getText().toString().trim();
         if(CheckInternet.getNetworkConnectivityStatus(AddRestaurant.this)){
           //  sendDataroserver(name,phone,address,gst);
             if(imgfile!=null) {
@@ -135,7 +140,7 @@ public class AddRestaurant extends AppCompatActivity {
                 imgfile = persistImage(bitmap, "name1");
             }
             AddShopAsyntask addShopAsyntask = new AddShopAsyntask();
-            addShopAsyntask.execute(name, phone, address, gst);
+            addShopAsyntask.execute(name, phone, address, gst,no_of_table);
         }
         else {
             showSnackBar("No Internet");
@@ -185,6 +190,7 @@ public class AddRestaurant extends AppCompatActivity {
                multipart.addFormField("title", params[0]);
                multipart.addFormField("address", params[2]);
                multipart.addFormField("gst", params[3]);
+               multipart.addFormField("no_of_table", params[4]);
                multipart.addFormField("save_from", "mobile");
                multipart.addFormField("mobile_no", params[1]);
                if(imgfile!=null){

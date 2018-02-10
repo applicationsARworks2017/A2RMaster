@@ -226,15 +226,24 @@ public class APIManager {
                                         }
 
                                       //  JSONObject object = new JSONObject(jsonString);
-                                        Object model = gson.fromJson(response.toString(), classType);
+                                       /* Object model = gson.fromJson(response.toString(), classType);
 
                                         if (listener != null) {
                                             listener.onSuccess(model);
-                                        }
+                                        }*/
                                     }
                                 } else {
                                     if (listener != null) {
                                         listener.onError(response.getString("No Data Found"));
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                if (listener != null) {
+                                    try {
+                                        listener.onError(response.getString("message"));
+                                    } catch (JSONException e1) {
+                                        e1.printStackTrace();
                                     }
                                 }
                             } catch (Exception e) {

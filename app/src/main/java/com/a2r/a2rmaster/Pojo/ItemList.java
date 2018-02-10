@@ -96,8 +96,23 @@ public class ItemList {
     }
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", title = " + name + ", is_active = " + is_active +
+        return "ClassPojo [id = " + id + ", title = " + name  +
                 ", modified = " + modified + ", created = " + created+ ",product_type_id="+product_type_id+"" +
                 ",product_category_id="+product_category_id+",price="+price+",added_by="+added_by+",shop_id="+shop_id+",image="+image+"]";
     }
 }
+
+/*
+*
+*
+* "id": 9,
+            "name": "demo item",
+            "product_type_id": 2,
+            "product_category_id": "Indian",
+            "price": 100,
+            "added_by": 6,
+            "shop_id": 11,
+            "image": "",
+            "created": "2018-02-10T05:01:10+00:00",
+            "modified": "2018-02-10T05:01:10+00:00",
+* */
