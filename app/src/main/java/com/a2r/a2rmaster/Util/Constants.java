@@ -28,6 +28,7 @@ public class Constants {
     public static String PRODUCTTYPE="ProductTypes/index.json";
     public static String PRODUCTSCATEGORY="products/index.json";
     public static String EDITRESSTRAUNT="shops/edit.json";
+    public static String USERLIST="users/index.json";
 
 
     public static  String SHAREDPREFERENCE_KEY="a2rmaster";
