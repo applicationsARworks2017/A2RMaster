@@ -48,7 +48,7 @@ public class RestaurantAdapter extends BaseAdapter{
         return i;
     }
     private class Holder{
-        TextView tv_rest_name,details;
+        TextView tv_rest_name,details,phone;
         ImageView rest_edit;
 
     }
@@ -62,6 +62,7 @@ public class RestaurantAdapter extends BaseAdapter{
             view = mInflater.inflate(R.layout.rest_list, viewGroup, false);
             holder.tv_rest_name=(TextView)view.findViewById(R.id.tv_rest_name);
             holder.details=(TextView) view.findViewById(R.id.details);
+            holder.phone=(TextView) view.findViewById(R.id.phone);
             holder.rest_edit=(ImageView)view.findViewById(R.id.rest_edit);
             view.setTag(holder);
         }
@@ -71,12 +72,14 @@ public class RestaurantAdapter extends BaseAdapter{
         }
         holder.tv_rest_name.setTag(i);
         holder.details.setTag(i);
+        holder.phone.setTag(i);
         holder.tv_rest_name.setText(_pos.getTitle());
         String mobile=_pos.getMobile_no();
         if(mobile==null){
             mobile="Not Given";
         }
-        holder.details.setText("Phone :"+mobile+","+"Address :"+_pos.getAddress());
+        holder.phone.setText("Phone :"+mobile.trim().toString());
+        holder.details.setText("Address :"+_pos.getAddress().trim().toString());
 
 
         holder.rest_edit.setOnClickListener(new View.OnClickListener() {

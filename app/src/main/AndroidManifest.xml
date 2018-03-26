@@ -59,6 +59,8 @@
             android:parentActivityName=".Activity.ChooseProduct"
             android:theme="@style/AppThemetwo" />
         <activity android:name=".Activity.ChooseProduct"></activity>
+        <activity android:name=".Activity.UserDetails"></activity>
+        <activity android:name=".Activity.UsersListShopWise"></activity>
     </application>
 
 </manifest>

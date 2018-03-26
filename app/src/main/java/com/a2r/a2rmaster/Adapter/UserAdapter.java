@@ -2,7 +2,6 @@ package com.a2r.a2rmaster.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.a2r.a2rmaster.Activity.UsersListShopWise;
 import com.a2r.a2rmaster.Pojo.USERList;
 import com.a2r.a2rmaster.R;
 
@@ -24,10 +24,13 @@ public class UserAdapter extends BaseAdapter{
     ArrayList<USERList> myList;
     Holder holder,holder1;
 
-    public UserAdapter(FragmentActivity activity, ArrayList<USERList> userList) {
+    public UserAdapter(UsersListShopWise activity, ArrayList<USERList> userList) {
       this._context=activity;
       this.myList=userList;
       }
+
+
+
 
     @Override
     public int getCount() {
@@ -44,7 +47,7 @@ public class UserAdapter extends BaseAdapter{
         return i;
     }
    private class Holder{
-       TextView tv_rest_name,details,textsymbol;
+       TextView tv_rest_name,tv_user_mobile,textsymbol,tv_user_shop;
        RelativeLayout name_image;
 
 
@@ -58,7 +61,9 @@ public class UserAdapter extends BaseAdapter{
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = mInflater.inflate(R.layout.user_list, viewGroup, false);
             holder.tv_rest_name=(TextView)view.findViewById(R.id.tv_user_name);
+            holder.tv_user_mobile=(TextView) view.findViewById(R.id.tv_user_mobile);
             holder.textsymbol=(TextView) view.findViewById(R.id.textsymbol);
+            holder.tv_user_shop=(TextView) view.findViewById(R.id.tv_user_shop);
             holder.name_image=(RelativeLayout) view.findViewById(R.id.name_image);
             view.setTag(holder);
         }
@@ -68,8 +73,12 @@ public class UserAdapter extends BaseAdapter{
         }
         holder.tv_rest_name.setTag(i);
         holder.textsymbol.setTag(i);
+        holder.tv_user_mobile.setTag(i);
+        holder.tv_user_shop.setTag(i);
 
         holder.tv_rest_name.setText(_pos.getName());
+        holder.tv_user_mobile.setText(_pos.getMobile());
+        holder.tv_user_shop.setText(_pos.getShop_title());
         holder.textsymbol.setText(String.valueOf(_pos.getName().charAt(0)).toUpperCase());
         return view;
     }

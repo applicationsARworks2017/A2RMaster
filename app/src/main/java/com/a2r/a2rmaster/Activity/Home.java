@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.a2r.a2rmaster.Fragment.HomeFragment;
 import com.a2r.a2rmaster.Fragment.ProductFragment;
+import com.a2r.a2rmaster.Fragment.ProfileFragment;
+import com.a2r.a2rmaster.Fragment.ResidentSupport;
 import com.a2r.a2rmaster.Fragment.UsersFragment;
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.Constants;
@@ -30,6 +32,8 @@ public class Home extends AppCompatActivity {
     private static final String TAG_HOME = "Home";
     private static final String TAG_USERS = "Users";
     private static final String TAG_CATEGORY = "Category List";
+    private static final String TAG_SUPPORT = "Support";
+    private static final String TAG_PROFILE = "Profile";
     public static String CURRENT_TAG = TAG_HOME;
     public static int item_id;
     private Handler mHandler;
@@ -118,26 +122,16 @@ public class Home extends AppCompatActivity {
                         item_id = R.id.a2r_items;
                         CURRENT_TAG = TAG_CATEGORY;
                         break;
-                     /*case R.id.resident_preapprove:
-                        item_id = R.id.resident_preapprove;
-                        CURRENT_TAG = TAG_PREAPPROVE;
-                        break;
-                    case R.id.resident_preapproved_list:
-                        item_id = R.id.resident_preapproved_list;
-                        CURRENT_TAG = TAG_PREAPPROVELIST;
-                        break;
-
-                    case R.id.resident_service:
-                        item_id = R.id.resident_service;
-                        //  navItemIndex = 6;
-                        CURRENT_TAG = TAG_SERVICE;
-                        break;
                     case R.id.resident_support:
                         item_id = R.id.resident_support;
-                        //  navItemIndex = 6;
                         CURRENT_TAG = TAG_SUPPORT;
-                        break;*/
+                        break;
+                    case R.id.profile:
+                        item_id = R.id.profile;
+                        CURRENT_TAG = TAG_PROFILE;
+                        break;
                     default:
+                        CURRENT_TAG=TAG_HOME;
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state
@@ -228,33 +222,22 @@ public class Home extends AppCompatActivity {
                 ProductFragment product_frag = new ProductFragment();
                 toolbar.setTitle("Select Restaurants");
                 return product_frag;
-            /* case R.id.resident_profile:
-                // Entry for visitors
-                ResidentProfile profile = new ResidentProfile();
-                toolbar.setTitle("Update your phone number");
-                return profile;
-            case R.id.resident_preapprove:
-                // Entry for visitors
-                ResidentPreApprove preapprove = new ResidentPreApprove();
-                toolbar.setTitle("Invite Visitors");
-                return preapprove;
-            case R.id.resident_preapproved_list:
-                // Entry for visitors
-                ResidentPreApproveList preapprovelist = new ResidentPreApproveList();
-                toolbar.setTitle("Invited Visitors List");
-                return preapprovelist;
-
-            case R.id.resident_service:
-                ResidentService serviceprovider = new ResidentService();
-                toolbar.setTitle("My Service Providers");
-                return serviceprovider;
             case R.id.resident_support:
-                ResidentSupport residentSupport = new ResidentSupport();
+                ResidentSupport supprt = new ResidentSupport();
                 toolbar.setTitle("Support");
-                return residentSupport;*/
+                return supprt;
+            case R.id.profile:
+                // Entry for visitors
+                ProfileFragment prof_frag = new ProfileFragment();
+                toolbar.setTitle("Profile");
+                return prof_frag;
 
             default:
                 return new HomeFragment();
         }
     }
+
+
+
+
 }

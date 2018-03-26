@@ -1,24 +1,24 @@
 package com.a2r.a2rmaster.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a2r.a2rmaster.Adapter.UserAdapter;
-import com.a2r.a2rmaster.Pojo.USERList;
+import com.a2r.a2rmaster.Activity.UsersListShopWise;
+import com.a2r.a2rmaster.Adapter.ShopListAdapter;
+import com.a2r.a2rmaster.Pojo.ShopList;
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.CheckInternet;
 import com.a2r.a2rmaster.Util.Constants;
@@ -50,22 +50,20 @@ public class UsersFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private HomeFragment.OnFragmentInteractionListener mListener;
-
-    FloatingActionButton add_rest;
     TextView no_rest;
     SwipeRefreshLayout rest_swipe;
     ListView rest_list;
     String user_id;
-    ArrayList<USERList> userList;
-    UserAdapter userAdapter;
-    FrameLayout framelayout;
+    ArrayList<ShopList> rList;
+    ShopListAdapter shopAdapter;
+    public static String rest_id, shop_id;
 
     public UsersFragment() {
         // Required empty public constructor
     }
     // TODO: Rename and change types and number of parameters
-    public static UsersFragment newInstance(String param1, String param2) {
-        UsersFragment fragment = new UsersFragment();
+    public static ProductFragment newInstance(String param1, String param2) {
+        ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -85,27 +83,34 @@ public class UsersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_users, container, false);
+        View view=inflater.inflate(R.layout.fragment_shops, container, false);
         user_id = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
-        userList=new ArrayList<>();
-        framelayout=(FrameLayout)view.findViewById(R.id.linn);
+        rList=new ArrayList<>();
         no_rest=(TextView)view.findViewById(R.id.no_rest);
         rest_swipe=(SwipeRefreshLayout)view.findViewById(R.id.rest_swipe);
-        rest_list=(ListView)view.findViewById(R.id.user_list);
-        getUser();
+        rest_list=(ListView)view.findViewById(R.id.rest_list);
+        getMyRestaurants();
         rest_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 rest_swipe.setRefreshing(false);
-                getUser();
+                getMyRestaurants();
+            }
+        });
+        rest_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ShopList shops=(ShopList)rList.get(i);
+                rest_id=shops.getId();
+                Intent intent=new Intent(getActivity(), UsersListShopWise.class);
+                startActivity(intent);
             }
         });
         return view;
     }
-
-    private void getUser() {
+    private void getMyRestaurants() {
         if(CheckInternet.getNetworkConnectivityStatus(getActivity())){
-           new calltogetUserDetails().execute(user_id);
+            new calltoAPI().execute(user_id,"Y");
         }
         else{
             rest_swipe.setVisibility(View.GONE);
@@ -113,33 +118,33 @@ public class UsersFragment extends Fragment {
             Toast.makeText(getActivity(),"No internet",Toast.LENGTH_SHORT).show();
         }
     }
-    private class calltogetUserDetails extends AsyncTask<String, Void, Void>{
+    private class  calltoAPI extends AsyncTask<String, Void, Void>
 
-        String id,name,mobile,email,user_type_id,added_by,shop_id,created,modified,shop_title,address,
-                shop_user_type_id,shop_user_type_title,shop_user_is_active;
+    {
+
+        String id,title,address,logo,gst,mobile_no,added_by,created,modified,is_approved,no_of_table,
+                bill_prefix,frequency;
         private static final String TAG = "GetUserDetails";
         private ProgressDialog progressDialog = null;
         int server_status;
         String server_message;
-        String photo;
 
-    @Override
-    protected void onPreExecute() {
+        @Override
+        protected void onPreExecute() {
         super.onPreExecute();
         if (progressDialog == null) {
-            progressDialog = ProgressDialog.show(getContext(), "Loading", "Please wait...");
+            progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
         }
     }
-    @Override
-    protected Void doInBackground(String... params) {
+        @Override
+        protected Void doInBackground(String... params) {
 
         try {
-            String userid = params[0];
 
             InputStream in = null;
             int resCode = -1;
 
-            String link =Constants.BASEURL+Constants.USERLIST;
+            String link =Constants.BASEURL+Constants.SHOPLIST;
             URL url = new URL(link);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
@@ -152,8 +157,9 @@ public class UsersFragment extends Fragment {
             conn.setRequestMethod("POST");
 
             Uri.Builder builder = null;
-                builder = new Uri.Builder()
-                        .appendQueryParameter("user_id", userid);;
+            builder = new Uri.Builder()
+                    .appendQueryParameter("added_by", params[0])
+                    .appendQueryParameter("is_approved", params[1]);
 
             String query = builder.build().getEncodedQuery();
 
@@ -184,18 +190,9 @@ public class UsersFragment extends Fragment {
 
             /**
              * {
-             "users": [
+             "{
+             "shops": [
              {
-             "id": 6,
-             "name": "admin1",
-             "mobile": "7205674061",
-             "email": "a@gmail.com",
-             "user_type_id": 3,
-             "added_by": 5,
-             "shop_id": 11,
-             "created": "2018-01-27T01:10:10+00:00",
-             "modified": "2018-01-27T01:10:10+00:00",
-             "shop": {
              "id": 11,
              "title": "shop1",
              "address": "MIG-102, Udaygiri Vihar",
@@ -204,57 +201,47 @@ public class UsersFragment extends Fragment {
              "mobile_no": null,
              "added_by": 5,
              "is_approved": "Y",
-             "no_of_table": null,
+             "no_of_table": 10,
+             "bill_prefix": null,
+             "frequency": "Monthly",
              "created": "2018-01-27T01:41:08+00:00",
              "modified": "2018-02-06T00:55:59+00:00"
              },
-             "user_type": {
-             "id": 3,
-             "title": "Admin",
-             "is_active": "Y",
-             "created": "2018-01-19T00:31:44+00:00",
-             "modified": "2018-01-21T02:37:08+00:00"
-             }
-             }
-             ]
              * */
 
 
             if (response != null && response.length() > 0) {
                 JSONObject res = new JSONObject(response.trim());
-                server_status = res.optInt("status");
-                    JSONArray jarry=res.getJSONArray("users");
-                    for(int i=0;i<jarry.length();i++){
-                        JSONObject j_obj=jarry.getJSONObject(i);
-                        JSONObject shop_data=j_obj.getJSONObject("shop");
-                        if(shop_data==null){
-
-                        }
-                        JSONObject user_type_data=j_obj.getJSONObject("user_type");
+                rList=new ArrayList<>();
+                JSONArray jarry = res.getJSONArray("shops");
+                if (jarry.length() > 0) {
+                    server_status=1;
+                    for (int i = 0; i < jarry.length(); i++) {
+                        JSONObject j_obj = jarry.getJSONObject(i);
 
                         id = j_obj.optString("id");
-                        name = j_obj.optString("name");
-                        mobile = j_obj.optString("mobile");
-                        email  = j_obj.optString("email");
-                        user_type_id = j_obj.optString("user_type_id");
+                        title = j_obj.optString("title");
+                        address = j_obj.optString("address");
+                        logo = j_obj.optString("logo");
+                        gst = j_obj.optString("gst");
+                        mobile_no = j_obj.optString("mobile_no");
                         added_by = j_obj.optString("added_by");
-                        shop_id = j_obj.optString("shop_id");
                         created = j_obj.optString("created");
                         modified = j_obj.optString("modified");
+                        is_approved = j_obj.optString("is_approved");
+                        no_of_table = j_obj.optString("no_of_table");
+                        bill_prefix = j_obj.optString("bill_prefix");
+                        frequency = j_obj.optString("frequency");
 
-                         shop_id=shop_data.getString("id");
-                         shop_title=shop_data.getString("title");
-                         address=shop_data.getString("address");
 
-                        shop_user_type_id=user_type_data.getString("id");
-                        shop_user_type_title=user_type_data.getString("title");
-                        shop_user_is_active=user_type_data.getString("is_active");
 
-                        USERList userlist = new USERList(id,name,mobile,email,user_type_id,added_by,shop_id,created,modified,shop_title,address,
-                                shop_user_type_id,shop_user_type_title,shop_user_is_active);
-                        userList.add(userlist);
+                        ShopList shop = new ShopList(id,title,address,logo,gst,mobile_no,added_by,created,modified,is_approved,no_of_table,
+                                bill_prefix,frequency);
+                        rList.add(shop);
                     }
-
+                } else {
+                    server_status = 0;
+                }
             }
             return null;
         } catch (Exception exception) {
@@ -264,24 +251,23 @@ public class UsersFragment extends Fragment {
         return null;
     }
 
-    @Override
-    protected void onPostExecute(Void user) {
+        @Override
+        protected void onPostExecute(Void user) {
         super.onPostExecute(user);
-        if(server_status==1) {
-            userAdapter = new UserAdapter(getActivity(),userList );
-            rest_list.setAdapter(userAdapter);
-            rest_swipe.setVisibility(View.GONE);
+        if(server_status==0) {
             no_rest.setVisibility(View.VISIBLE);
+            rest_swipe.setVisibility(View.GONE);
+            Toast.makeText(getActivity(),server_message,Toast.LENGTH_SHORT).show();
 
         }
         else{
+            shopAdapter = new ShopListAdapter(getActivity(),rList );
+            rest_list.setAdapter(shopAdapter);
 
-            Snackbar snackbar = Snackbar
-                    .make(framelayout, server_message, Snackbar.LENGTH_LONG);
-            snackbar.show();
         }
         progressDialog.cancel();
     }
+    }
 }
-}
+
 

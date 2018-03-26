@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/name_image"
         android:layout_marginLeft="10dp"
         android:background="@drawable/circle_border">
@@ -22,33 +22,22 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/name_image"
         android:layout_marginLeft="20dp"
-        android:text="vvvv"
+        android:text=""
         android:textStyle="bold"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/tv_user_name"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_rest_name"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/name_image"
+        android:layout_below="@id/tv_rest_name"
         android:layout_marginLeft="20dp"
-        android:text="vvvv"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="0dp"
-        android:id="@+id/tv_user_mobile"
-        android:layout_below="@+id/tv_user_name" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/name_image"
-        android:layout_marginLeft="20dp"
-        android:text="vvvv"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="0dp"
-        android:id="@+id/tv_user_shop"
-        android:layout_below="@+id/tv_user_mobile" />
-
+        android:id="@+id/details"
+        android:text=""/>
 
 
 
