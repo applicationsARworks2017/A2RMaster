@@ -1,7 +1,6 @@
 package com.a2r.a2rmaster.Activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -84,14 +82,14 @@ public class UsersListShopWise extends AppCompatActivity{
                 getUser();
             }
         });
-        rest_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* rest_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(UsersListShopWise.this,UserDetails.class);
                 startActivity(intent);
             }
         });
-
+*/
     }
 
     private void getUser() {

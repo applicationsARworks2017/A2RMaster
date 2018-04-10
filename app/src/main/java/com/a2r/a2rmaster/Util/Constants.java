@@ -20,7 +20,7 @@ import java.io.InputStream;
  */
 
 public class Constants {
-    public static String BASEURL="http://a2r.in/admin/";
+    public static String BASEURL="https://a2r.in/admin/";
     public static String LOGIN="users/loginMobile.json";
     public static String ADDSHOPS="shops/add.json";
     public static String SHOPLIST="shops/index.json";

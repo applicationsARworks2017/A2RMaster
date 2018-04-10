@@ -78,7 +78,7 @@ public class UserAdapter extends BaseAdapter{
 
         holder.tv_rest_name.setText(_pos.getName());
         holder.tv_user_mobile.setText(_pos.getMobile());
-        holder.tv_user_shop.setText(_pos.getShop_title());
+        holder.tv_user_shop.setText(_pos.getShop_user_type_title());
         holder.textsymbol.setText(String.valueOf(_pos.getName().charAt(0)).toUpperCase());
         return view;
     }
