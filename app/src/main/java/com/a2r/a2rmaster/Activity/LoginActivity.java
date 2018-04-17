@@ -4,20 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.a2r.a2rmaster.Pojo.User;
 import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.APIManager;
 import com.a2r.a2rmaster.Util.CheckInternet;
 import com.a2r.a2rmaster.Util.Constants;
-import com.a2r.a2rmaster.Pojo.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,11 +28,15 @@ public class LoginActivity extends AppCompatActivity {
     EditText u_mobile,user_password;
     RelativeLayout login_rel;
     List <User> list;
+    String  fcm_id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        fcm_id = LoginActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.FCM_ID, null);
+
         //list=new ArrayList<>();
         lin_signin=(Button) findViewById(R.id.lin_signin);
         login_rel=(RelativeLayout)findViewById(R.id.login_rel);
