@@ -142,10 +142,10 @@ public class RestruntEdit extends AppCompatActivity {
         String gst=et_gst.getText().toString().trim();
         if(CheckInternet.getNetworkConnectivityStatus(RestruntEdit.this)){
             //  sendDataroserver(name,phone,address,gst);
-            if(imgfile!=null) {
+          //  if(imgfile!=null) {
                 Bitmap bitmap = ((BitmapDrawable) iv_logo.getDrawable()).getBitmap();
                 imgfile = persistImage(bitmap, "name1");
-            }
+            //}
             EditRestraunt res_edit = new EditRestraunt();
             res_edit.execute(name, phone, address, gst);
         }

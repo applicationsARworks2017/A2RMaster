@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.a2r.a2rmaster.Activity.RestruntEdit;
 import com.a2r.a2rmaster.Pojo.Restaurants;
 import com.a2r.a2rmaster.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class RestaurantAdapter extends BaseAdapter{
     }
     private class Holder{
         TextView tv_rest_name,details,phone;
-        ImageView rest_edit;
+        ImageView rest_edit,iv_logo;
 
     }
     @Override
@@ -64,11 +65,13 @@ public class RestaurantAdapter extends BaseAdapter{
             holder.details=(TextView) view.findViewById(R.id.details);
             holder.phone=(TextView) view.findViewById(R.id.phone);
             holder.rest_edit=(ImageView)view.findViewById(R.id.rest_edit);
+            holder.iv_logo=(ImageView)view.findViewById(R.id.iv_logo);
             view.setTag(holder);
         }
         else{
             holder = (Holder) view.getTag();
             holder.rest_edit.setTag(holder);
+            holder.iv_logo.setTag(holder);
         }
         holder.tv_rest_name.setTag(i);
         holder.details.setTag(i);
@@ -78,7 +81,15 @@ public class RestaurantAdapter extends BaseAdapter{
         if(mobile==null){
             mobile="Not Given";
         }
-        holder.phone.setText("Phone :"+mobile.trim().toString());
+        String photo1=_pos.getLogo();
+        if(photo1=="" || photo1==null || photo1.isEmpty()) {
+        }
+        else{
+            Picasso.with(_context)
+                    .load(photo1)
+                    .placeholder(R.drawable.error)
+                    .error(R.drawable.error).into(holder.iv_logo);
+        }        holder.phone.setText("Phone :"+mobile.trim().toString());
         holder.details.setText("Address :"+_pos.getAddress().trim().toString());
 
 

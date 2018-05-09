@@ -11,12 +11,10 @@
         android:layout_height="80dp">
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:id="@+id/iv_logo"
-            android:background="@drawable/logo_master"/>
+            android:id="@+id/iv_logo" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,6 +53,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="40dp"
             android:id="@+id/details"
+            android:singleLine="true"
             android:text="ddd"/>
         <LinearLayout
             android:layout_width="match_parent"

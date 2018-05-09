@@ -62,6 +62,10 @@
         <activity android:name=".Activity.ChooseProduct"></activity>
         <activity android:name=".Activity.UserDetails"></activity>
         <activity android:name=".Activity.UsersListShopWise"></activity>
+        <activity android:name=".Activity.AddUser"
+            android:label="Add Users"
+            android:theme="@style/AppThemetwo"
+            android:parentActivityName=".Activity.UsersListShopWise"></activity>
 
         <!-- Firebase Notifications -->
         <service android:name=".Firebase.MyFirebaseMessagingService">

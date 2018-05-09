@@ -1,6 +1,7 @@
 package com.a2r.a2rmaster.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,6 +54,7 @@ public class UsersListShopWise extends AppCompatActivity{
     RelativeLayout framelayout;
     Toolbar user_tool;
     LinearLayout user_tool_back;
+    FloatingActionButton add_user;
 
 
     @Override
@@ -68,6 +70,14 @@ public class UsersListShopWise extends AppCompatActivity{
         no_rest=(TextView)findViewById(R.id.no_rest);
         rest_swipe=(SwipeRefreshLayout)findViewById(R.id.rest_swipe);
         rest_list=(ListView)findViewById(R.id.user_list);
+        add_rest=(FloatingActionButton)findViewById(R.id.add_rest);
+        add_rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UsersListShopWise.this,AddUser.class);
+                startActivity(intent);
+            }
+        });
         getUser();
         user_tool_back.setOnClickListener( new View.OnClickListener() {
             @Override

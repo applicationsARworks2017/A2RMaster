@@ -24,7 +24,8 @@
             android:id="@+id/stocks"
             android:title="Stocks"
             android:icon="@mipmap/ic_kitchen_black_24dp"
-            android:iconTint="@color/colorPrimary"/>
+            android:iconTint="@color/colorPrimary"
+            android:visible="false"/>
         <item
             android:id="@+id/reports"
             android:icon="@mipmap/ic_receipt_black_24dp"

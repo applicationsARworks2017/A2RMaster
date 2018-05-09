@@ -1,25 +1,26 @@
 package com.a2r.a2rmaster.Activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,25 +28,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a2r.a2rmaster.R;
-import com.a2r.a2rmaster.SplashScreen;
-import com.a2r.a2rmaster.Util.APIManager;
 import com.a2r.a2rmaster.Util.CheckInternet;
 import com.a2r.a2rmaster.Util.Constants;
 import com.a2r.a2rmaster.Util.MultipartUtility;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,6 +59,8 @@ public class AddRestaurant extends AppCompatActivity {
     RelativeLayout addshop_rel;
     Bitmap bitmap;
     File imgfile;
+    Boolean imgavail=false;
+    private static String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +68,14 @@ public class AddRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_add_restaurant);
         user_id = AddRestaurant.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // here it is checking whether the permission is granted previously or not
+            if (!hasPermissions(this, PERMISSIONS)) {
+                //Permission is granted
+                ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
+
+            }
+        }
         iv_logo = (ImageView) findViewById(R.id.iv_logo);
         iv_submit = (ImageView) findViewById(R.id.iv_submit);
         bt_addlogo = (Button) findViewById(R.id.bt_addlogo);
@@ -95,6 +99,13 @@ public class AddRestaurant extends AppCompatActivity {
                     public void onClick(View view) {
                         dialog.cancel();
                         captureImage("gallery");
+
+                    }
+                });camera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                        captureImage("camera");
 
                     }
                 });
@@ -135,10 +146,11 @@ public class AddRestaurant extends AppCompatActivity {
         String no_of_table=et_table.getText().toString().trim();
         if(CheckInternet.getNetworkConnectivityStatus(AddRestaurant.this)){
           //  sendDataroserver(name,phone,address,gst);
-            if(imgfile!=null) {
+            if(imgavail==true) {
                 Bitmap bitmap = ((BitmapDrawable) iv_logo.getDrawable()).getBitmap();
                 imgfile = persistImage(bitmap, "name1");
             }
+
             AddShopAsyntask addShopAsyntask = new AddShopAsyntask();
             addShopAsyntask.execute(name, phone, address, gst,no_of_table);
         }
@@ -291,21 +303,46 @@ public class AddRestaurant extends AppCompatActivity {
         picUri = Uri.fromFile(image); // convert path to Uri
         return image;
     }
-
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            try {
+                Bitmap photo = MediaStore.Images.Media.getBitmap(AddRestaurant.this.getContentResolver(), picUri);
+                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
+                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+                iv_logo.setImageBitmap(perfectImage);
+                imgavail=true;
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-            Cursor cursor = getContentResolver().query(selectedImage,
+            Cursor cursor = AddRestaurant.this.getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+           // pic_Uri = Uri.parse(String.valueOf(new File(picturePath)));
+            //picAvailable=true;
             iv_logo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
+            imgavail=true;
 
         }
     }

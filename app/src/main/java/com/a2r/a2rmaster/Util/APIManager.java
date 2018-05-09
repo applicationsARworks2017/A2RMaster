@@ -2,10 +2,7 @@ package com.a2r.a2rmaster.Util;
 
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -15,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -212,7 +210,7 @@ public class APIManager {
                                     ArrayList arrList = new ArrayList();
                                     if(jsonArray.length()<=0){
                                         if (listener != null) {
-                                            listener.onError(response.getString("No Data Found"));
+                                            listener.onError("No Data Found");
                                         }
                                     }
                                     else {
@@ -234,7 +232,7 @@ public class APIManager {
                                     }
                                 } else {
                                     if (listener != null) {
-                                        listener.onError(response.getString("No Data Found"));
+                                        listener.onError("No Data Found");
                                     }
                                 }
                             } catch (JSONException e) {

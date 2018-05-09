@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     private static final String TAG_HOME = "Home";
-    private static final String TAG_USERS = "Users";
+    private static final String TAG_USERS = "Select Hotel";
     private static final String TAG_CATEGORY = "Category List";
     private static final String TAG_SUPPORT = "Support";
     private static final String TAG_PROFILE = "Profile";
@@ -215,7 +215,7 @@ public class Home extends AppCompatActivity {
             case R.id.a2r_users:
                 // Entry for visitors
                 UsersFragment user_frag = new UsersFragment();
-                toolbar.setTitle("Users");
+                toolbar.setTitle("Select Hotel");
                 return user_frag;
                 case R.id.a2r_items:
                 // Entry for visitors
