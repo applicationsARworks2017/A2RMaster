@@ -30,6 +30,7 @@ import com.a2r.a2rmaster.R;
 import com.a2r.a2rmaster.Util.CheckInternet;
 import com.a2r.a2rmaster.Util.Constants;
 import com.a2r.a2rmaster.Util.MultipartUtility;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -40,6 +41,8 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static com.a2r.a2rmaster.Util.Constants.modifyOrientation;
 
 /**
  * Created by mobileapplication on 2/2/18.
@@ -58,7 +61,8 @@ public class RestruntEdit extends AppCompatActivity {
     RelativeLayout addshop_rel;
     Bitmap bitmap;
     File imgfile;
-    String res_title,res_mobile,res_address,res_gst,user_id,res_added_by,res_edit_id;
+    Boolean imgavail=false;
+    String res_title,res_mobile,res_address,res_gst,user_id,res_added_by,res_edit_id,photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +89,23 @@ public class RestruntEdit extends AppCompatActivity {
             res_gst = extras.getString("gst");
             res_added_by = extras.getString("addedby");
             res_edit_id = extras.getString("editid");
+            photo = extras.getString("photo");
         }
 
         et_name.setText(res_title);
         et_phone.setText(res_mobile);
         et_add.setText(res_address);
         et_gst.setText(res_gst);
+        if(photo=="" || photo==null || photo.isEmpty()) {
+        }
+        else {
+            Picasso.with(RestruntEdit.this)
+                    .load(photo)
+                    .placeholder(R.drawable.error)
+                    .error(R.drawable.error).into(iv_logo);
+            imgavail=true;
+
+        }
         bt_addlogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +119,14 @@ public class RestruntEdit extends AppCompatActivity {
                     public void onClick(View view) {
                         dialog.cancel();
                         captureImage("gallery");
+
+                    }
+                });
+                camera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                        captureImage("camera");
 
                     }
                 });
@@ -143,8 +166,10 @@ public class RestruntEdit extends AppCompatActivity {
         if(CheckInternet.getNetworkConnectivityStatus(RestruntEdit.this)){
             //  sendDataroserver(name,phone,address,gst);
           //  if(imgfile!=null) {
+            if(imgavail==true) {
                 Bitmap bitmap = ((BitmapDrawable) iv_logo.getDrawable()).getBitmap();
                 imgfile = persistImage(bitmap, "name1");
+            }
             //}
             EditRestraunt res_edit = new EditRestraunt();
             res_edit.execute(name, phone, address, gst);
@@ -295,19 +320,35 @@ public class RestruntEdit extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            try {
+                Bitmap photo = MediaStore.Images.Media.getBitmap(RestruntEdit.this.getContentResolver(), picUri);
+                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
+                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+                iv_logo.setImageBitmap(perfectImage);
+                imgavail=true;
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-            Cursor cursor = getContentResolver().query(selectedImage,
+            Cursor cursor = RestruntEdit.this.getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+            // pic_Uri = Uri.parse(String.valueOf(new File(picturePath)));
+            //picAvailable=true;
             iv_logo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
+            imgavail=true;
 
         }
     }

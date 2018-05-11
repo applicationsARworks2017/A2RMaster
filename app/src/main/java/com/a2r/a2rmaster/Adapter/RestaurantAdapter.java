@@ -111,6 +111,7 @@ public class RestaurantAdapter extends BaseAdapter{
                                 String res_gst=_pos.getGst();
                                 String res_addedby=_pos.getAdded_by();
                                 String res_edit_id=_pos.getId();
+                                String photoo=_pos.getLogo();
                                 Intent i=new Intent(_context,RestruntEdit.class);
                                 i.putExtra("title",res_title);
                                 i.putExtra("mobile",res_mobile);
@@ -118,6 +119,7 @@ public class RestaurantAdapter extends BaseAdapter{
                                 i.putExtra("gst",res_gst);
                                 i.putExtra("addedby",res_addedby);
                                 i.putExtra("editid",res_edit_id);
+                                i.putExtra("photo",photoo);
                                 _context.startActivity(i);
 
                             }

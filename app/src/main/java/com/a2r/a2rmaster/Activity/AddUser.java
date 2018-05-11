@@ -69,17 +69,17 @@ public class AddUser extends AppCompatActivity {
         adapte_visitors.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Specify the layout to use when the list of choices appears
         spin_usertype.setAdapter(adapte_visitors);
         spin_usertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                    @Override
-                                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                        spin_list = spin_usertype.getSelectedItem().toString();
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                spin_list = spin_usertype.getSelectedItem().toString();
 
-                                                    }
+            }
 
-                                                    @Override
-                                                    public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                                                    }
-                                                });
+            }
+        });
         iv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +122,7 @@ public class AddUser extends AppCompatActivity {
         String spin_value=spin_list;
         if(CheckInternet.getNetworkConnectivityStatus(AddUser.this)){
             //  sendDataroserver(name,phone,address,gst);
-           new AddUserdata().execute(name,user_name,pass, phone, email, spin_value, UsersFragment.rest_id,"Y");
+            new AddUserdata().execute(name,user_name,pass, phone, email, spin_value, UsersFragment.rest_id,"Y");
         }
         else {
             showSnackBar("No Internet");
@@ -184,7 +184,8 @@ public class AddUser extends AppCompatActivity {
                         .appendQueryParameter("emai", params[4])
                         .appendQueryParameter("user_type_id",params[5])
                         .appendQueryParameter("shop_id", params[6])
-                        .appendQueryParameter("is_active", params[7]);
+                        .appendQueryParameter("is_active", params[7])
+                        .appendQueryParameter("save_from", "mobile");
 
                 String query = builder.build().getEncodedQuery();
 

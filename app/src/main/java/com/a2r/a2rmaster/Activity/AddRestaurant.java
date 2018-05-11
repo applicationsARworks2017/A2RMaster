@@ -145,7 +145,7 @@ public class AddRestaurant extends AppCompatActivity {
         String gst=et_gst.getText().toString().trim();
         String no_of_table=et_table.getText().toString().trim();
         if(CheckInternet.getNetworkConnectivityStatus(AddRestaurant.this)){
-          //  sendDataroserver(name,phone,address,gst);
+            //  sendDataroserver(name,phone,address,gst);
             if(imgavail==true) {
                 Bitmap bitmap = ((BitmapDrawable) iv_logo.getDrawable()).getBitmap();
                 imgfile = persistImage(bitmap, "name1");
@@ -175,77 +175,77 @@ public class AddRestaurant extends AppCompatActivity {
     }
 
 
-   public class AddShopAsyntask extends AsyncTask<String,Void,Void>{
-       private static final String TAG = "AddShopAsyntask";
-       private ProgressDialog progressDialog = null;
-       int server_status;
-       String server_message;
-       String link = Constants.BASEURL+Constants.ADDSHOPS;
-       String charset = "UTF-8";
+    public class AddShopAsyntask extends AsyncTask<String,Void,Void>{
+        private static final String TAG = "AddShopAsyntask";
+        private ProgressDialog progressDialog = null;
+        int server_status;
+        String server_message;
+        String link = Constants.BASEURL+Constants.ADDSHOPS;
+        String charset = "UTF-8";
 
-       @Override
-       protected void onPreExecute() {
-           super.onPreExecute();
-           if (progressDialog == null) {
-               progressDialog = ProgressDialog.show(AddRestaurant.this, "Adding", "Please wait...");
-           }
-           // onPreExecuteTask();
-       }
-       @Override
-       protected Void doInBackground(String... params) {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (progressDialog == null) {
+                progressDialog = ProgressDialog.show(AddRestaurant.this, "Adding", "Please wait...");
+            }
+            // onPreExecuteTask();
+        }
+        @Override
+        protected Void doInBackground(String... params) {
 
 
 
-           try {
-               MultipartUtility multipart=new MultipartUtility(link,charset);
-               multipart.addFormField("added_by", user_id);
-               multipart.addFormField("title", params[0]);
-               multipart.addFormField("address", params[2]);
-               multipart.addFormField("gst", params[3]);
-               multipart.addFormField("no_of_table", params[4]);
-               multipart.addFormField("save_from", "mobile");
-               multipart.addFormField("mobile_no", params[1]);
-               if(imgfile!=null){
-                   multipart.addFilePart("logo", imgfile);
-               }
-               List<String> response = multipart.finish();
-               String res = "";
-               for (String line : response) {
-                   res = res + line + "\n";
-               }
-               Log.i(TAG, res);
-               if (res != null && res.length() > 0) {
-                   JSONObject ress = new JSONObject(res.trim());
-                   JSONObject res1=ress.getJSONObject("res");
-                   server_status = res1.optInt("status");
-                   if(server_status==1){
-                       server_message="Added Successfully";
-                   }
-                   else {
-                       server_message = "Unsuccessfull";
-                   }
+            try {
+                MultipartUtility multipart=new MultipartUtility(link,charset);
+                multipart.addFormField("added_by", user_id);
+                multipart.addFormField("title", params[0]);
+                multipart.addFormField("address", params[2]);
+                multipart.addFormField("gst", params[3]);
+                multipart.addFormField("no_of_table", params[4]);
+                multipart.addFormField("save_from", "mobile");
+                multipart.addFormField("mobile_no", params[1]);
+                if(imgfile!=null){
+                    multipart.addFilePart("logo", imgfile);
+                }
+                List<String> response = multipart.finish();
+                String res = "";
+                for (String line : response) {
+                    res = res + line + "\n";
+                }
+                Log.i(TAG, res);
+                if (res != null && res.length() > 0) {
+                    JSONObject ress = new JSONObject(res.trim());
+                    JSONObject res1=ress.getJSONObject("res");
+                    server_status = res1.optInt("status");
+                    if(server_status==1){
+                        server_message="Added Successfully";
+                    }
+                    else {
+                        server_message = "Unsuccessfull";
+                    }
 
-               }
-           }
-           catch (Exception e){
-               server_message = "Connectivity issues,please try again";
-               Log.e( TAG, e.toString());
-           }
-           return null;
-       }
-       @Override
-       protected void onPostExecute(Void user) {
-           super.onPostExecute(user);
-           progressDialog.cancel();
-           if (server_status == 1) {
-            AddRestaurant.this.finish();
-            Toast.makeText(AddRestaurant.this,server_message,Toast.LENGTH_SHORT).show();
-           }
-           else{
-               showSnackBar(server_message);
-           }
-       }
-   }
+                }
+            }
+            catch (Exception e){
+                server_message = "Connectivity issues,please try again";
+                Log.e( TAG, e.toString());
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.cancel();
+            if (server_status == 1) {
+                AddRestaurant.this.finish();
+                Toast.makeText(AddRestaurant.this,server_message,Toast.LENGTH_SHORT).show();
+            }
+            else{
+                showSnackBar(server_message);
+            }
+        }
+    }
 
 
     private void captureImage(String action) {
@@ -339,7 +339,7 @@ public class AddRestaurant extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-           // pic_Uri = Uri.parse(String.valueOf(new File(picturePath)));
+            // pic_Uri = Uri.parse(String.valueOf(new File(picturePath)));
             //picAvailable=true;
             iv_logo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             imgavail=true;
