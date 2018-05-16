@@ -14,6 +14,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             android:id="@+id/iv_logo" />
         <TextView
             android:layout_width="match_parent"

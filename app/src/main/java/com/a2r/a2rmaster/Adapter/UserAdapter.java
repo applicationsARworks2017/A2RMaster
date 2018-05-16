@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.a2r.a2rmaster.Activity.UsersListShopWise;
+import com.a2r.a2rmaster.Activity.UsersActivity;
 import com.a2r.a2rmaster.Pojo.USERList;
 import com.a2r.a2rmaster.R;
 
@@ -24,7 +24,7 @@ public class UserAdapter extends BaseAdapter{
     ArrayList<USERList> myList;
     Holder holder,holder1;
 
-    public UserAdapter(UsersListShopWise activity, ArrayList<USERList> userList) {
+    public UserAdapter(UsersActivity activity, ArrayList<USERList> userList) {
       this._context=activity;
       this.myList=userList;
       }

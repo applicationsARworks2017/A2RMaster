@@ -11,4 +11,6 @@
     <color name="black">#000</color>
     <color name="green">#43A047</color>
     <color name="light_green">#8BC34A</color>
+    <color name="ovalm">#219393</color>
+    <color name="deppov">#3ACCCC</color>
 </resources>

@@ -36,6 +36,7 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.Home">
 
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,6 +63,11 @@
         <activity android:name=".Activity.ChooseProduct"></activity>
         <activity android:name=".Activity.UserDetails"></activity>
         <activity android:name=".Activity.UsersListShopWise"></activity>
+        <activity android:name=".Activity.UsersActivity"
+            android:theme="@style/AppThemetwo"
+            android:label="Users"
+            android:parentActivityName=".Activity.UsersListShopWise"></activity>
+
         <activity android:name=".Activity.AddUser"
             android:label="Add Users"
             android:theme="@style/AppThemetwo"

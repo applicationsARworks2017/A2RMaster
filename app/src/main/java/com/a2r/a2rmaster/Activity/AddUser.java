@@ -43,7 +43,7 @@ public class AddUser extends AppCompatActivity {
     EditText et_name,et_user_name,et_password, et_phone, et_email;
     RelativeLayout addshop_rel;
     List<String> VisitorsType;
-    String spin_list;
+    String spin_list,spin_value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,16 @@ public class AddUser extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spin_list = spin_usertype.getSelectedItem().toString();
-
+                if(spin_list.contentEquals("Admin")){
+                    spin_value="3";
+                }
+                else if (spin_list.contentEquals("Cashier")){
+                    spin_value="5";
+                }else if (spin_list.contentEquals("Dinning")){
+                    spin_value="4";
+                }else if (spin_list.contentEquals("Kitchen")){
+                    spin_value="6";
+                }
             }
 
             @Override
@@ -119,9 +128,9 @@ public class AddUser extends AppCompatActivity {
         String pass=et_password.getText().toString().trim();
         String phone=et_phone.getText().toString().trim();
         String email=et_email.getText().toString().trim();
-        String spin_value=spin_list;
         if(CheckInternet.getNetworkConnectivityStatus(AddUser.this)){
             //  sendDataroserver(name,phone,address,gst);
+
             new AddUserdata().execute(name,user_name,pass, phone, email, spin_value, UsersFragment.rest_id,"Y");
         }
         else {

@@ -27,42 +27,131 @@
             android:textColor="@color/white"
             android:text="Users List"
             android:textStyle="bold"
-            android:textSize="15dp"/>
+            android:textSize="20dp"/>
     </android.support.v7.widget.Toolbar>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/user_tool"
 
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/user_tool"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/manager"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+        android:background="@color/ovalm"
         >
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rest_swipe">
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:backgroundTint="@color/white"
-                android:id="@+id/user_list">
-            </ListView>
-        </android.support.v4.widget.SwipeRefreshLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Users Found"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:id="@+id/no_rest"/>
-        <android.support.design.widget.FloatingActionButton
+            android:text="MANAGER"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/managerr"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cashier"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/manager"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@color/green">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="CASHIER"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="50dp"
-            android:id="@+id/add_rest"
-            android:src="@mipmap/ic_add_white_24dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/cashierr"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/dining"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/cashier"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@color/light_red">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WAITER"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/waiter"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/kitchen"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/dining"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:background="@color/deppov">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COOK"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/chef"
             />
     </RelativeLayout>
 
+    </RelativeLayout>
+</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="50dp"
+        android:id="@+id/add_rest"
+        android:src="@mipmap/ic_add_white_24dp"
+        />
 </RelativeLayout>
