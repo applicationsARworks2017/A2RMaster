@@ -49,8 +49,8 @@ public class RestaurantAdapter extends BaseAdapter{
         return i;
     }
     private class Holder{
-        TextView tv_rest_name,details,phone;
-        ImageView rest_edit,iv_logo;
+        TextView tv_rest_name,details,phone,rest_edit;
+        ImageView iv_logo;
 
     }
     @Override
@@ -64,7 +64,7 @@ public class RestaurantAdapter extends BaseAdapter{
             holder.tv_rest_name=(TextView)view.findViewById(R.id.tv_rest_name);
             holder.details=(TextView) view.findViewById(R.id.details);
             holder.phone=(TextView) view.findViewById(R.id.phone);
-            holder.rest_edit=(ImageView)view.findViewById(R.id.rest_edit);
+            holder.rest_edit=(TextView)view.findViewById(R.id.rest_edit);
             holder.iv_logo=(ImageView)view.findViewById(R.id.iv_logo);
             view.setTag(holder);
         }
