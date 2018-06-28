@@ -24,6 +24,8 @@ public class Constants {
     public static String LOGIN="users/loginMobile.json";
     public static String ADDSHOPS="shops/add.json";
     public static String SHOPLIST="shops/index.json";
+    public static String GSTLIST="taxs/index.json";
+    public static String GSTEDIT="taxs/edit.json";
     public static String PRODUCTCATEGORY="ProductCategories/index.json";
     public static String PRODUCTTYPE="ProductTypes/index.json";
     public static String PRODUCTSCATEGORY="products/index.json";

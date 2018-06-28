@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_background"
+    tools:context="com.a2r.a2rmaster.Fragment.HomeFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/gst_rel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gst_swipe">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:id="@+id/gst_list">
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Gst Found"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:id="@+id/no_rest"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/add_gst"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/gst_rel_layout"
+        android:layout_centerInParent="true"
+        android:background="@color/light_red">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD GST"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

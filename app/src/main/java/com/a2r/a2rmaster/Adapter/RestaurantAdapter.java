@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a2r.a2rmaster.Activity.RestruntEdit;
+import com.a2r.a2rmaster.Activity.RestruntGST;
 import com.a2r.a2rmaster.Pojo.Restaurants;
 import com.a2r.a2rmaster.R;
 import com.squareup.picasso.Picasso;
@@ -51,6 +54,7 @@ public class RestaurantAdapter extends BaseAdapter{
     private class Holder{
         TextView tv_rest_name,details,phone,rest_edit;
         ImageView iv_logo;
+        RelativeLayout gst_layout,edit_layout;
 
     }
     @Override
@@ -66,11 +70,15 @@ public class RestaurantAdapter extends BaseAdapter{
             holder.phone=(TextView) view.findViewById(R.id.phone);
             holder.rest_edit=(TextView)view.findViewById(R.id.rest_edit);
             holder.iv_logo=(ImageView)view.findViewById(R.id.iv_logo);
+            holder.gst_layout=(RelativeLayout)view.findViewById(R.id.gst_layout);
+            holder.edit_layout=(RelativeLayout)view.findViewById(R.id.edit_layout);
             view.setTag(holder);
         }
         else{
             holder = (Holder) view.getTag();
             holder.rest_edit.setTag(holder);
+            holder.edit_layout.setTag(holder);
+            holder.gst_layout.setTag(holder);
             holder.iv_logo.setTag(holder);
         }
         holder.tv_rest_name.setTag(i);
@@ -93,7 +101,7 @@ public class RestaurantAdapter extends BaseAdapter{
         holder.details.setText("Address :"+_pos.getAddress().trim().toString());
 
 
-        holder.rest_edit.setOnClickListener(new View.OnClickListener() {
+        holder.edit_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder1=(Holder) view.getTag();
@@ -132,6 +140,28 @@ public class RestaurantAdapter extends BaseAdapter{
                 AlertDialog alert = builder.create();
                 alert.show();
             }
+        });
+
+
+        holder.gst_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder1 = (Holder) view.getTag();
+                if (_pos.getGst().contentEquals("")) {
+                    Toast.makeText(_context, "Please add your GST number", Toast.LENGTH_SHORT).show();
+                } else {
+                    String res_gst = _pos.getGst();
+                    String shop_id = _pos.getId();
+                    String shop_name = _pos.getTitle();
+                    Intent i = new Intent(_context, RestruntGST.class);
+                    i.putExtra("gst", res_gst);
+                    i.putExtra("shop_id", shop_id);
+                    i.putExtra("shop_name", shop_name);
+                    _context.startActivity(i);
+
+                }
+            }
+
         });
         return view;
     }

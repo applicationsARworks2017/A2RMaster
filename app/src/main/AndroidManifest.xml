@@ -56,6 +56,16 @@
             android:parentActivityName=".Activity.Home"
             android:theme="@style/AppThemetwo" />
         <activity
+            android:name=".Activity.RestruntGST"
+            android:label="GST Activity"
+            android:parentActivityName=".Activity.Home"
+            android:theme="@style/AppThemetwo" />
+        <activity
+            android:name=".Activity.GstEdit"
+            android:label="GST Edit"
+            android:parentActivityName=".Activity.Home"
+            android:theme="@style/AppThemetwo" />
+        <activity
             android:name=".Activity.ItemType"
             android:label="Item List"
             android:parentActivityName=".Activity.ChooseProduct"

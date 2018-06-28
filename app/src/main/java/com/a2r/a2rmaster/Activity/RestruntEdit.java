@@ -150,9 +150,9 @@ public class RestruntEdit extends AppCompatActivity {
         }
         else if(et_add.getText().toString().trim().length()<0){
             showSnackBar("Enter Address");
-        }else if(et_gst.getText().toString().trim().length()<0){
+        }/*else if(et_gst.getText().toString().trim().length()<0){
             showSnackBar("Enter Gst");
-        }
+        }*/
         else{
             editRestraunt();
         }
@@ -255,6 +255,7 @@ public class RestruntEdit extends AppCompatActivity {
             progressDialog.cancel();
             if (server_status == 1) {
                 Toast.makeText(RestruntEdit.this,server_message,Toast.LENGTH_SHORT).show();
+                finish();
             }
             else{
                 showSnackBar(server_message);
