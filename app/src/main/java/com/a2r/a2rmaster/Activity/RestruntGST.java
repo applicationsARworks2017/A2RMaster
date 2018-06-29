@@ -1,6 +1,7 @@
 package com.a2r.a2rmaster.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class RestruntGST extends AppCompatActivity {
     SwipeRefreshLayout gst_swipe;
     RelativeLayout add_gst_layout;
     TextView no_rest;
-    String shop_id,res_gst,shop_name;
+   public static String shop_id,res_gst,shop_name;
     ArrayList<GST> gList;
     GstAdapter gstAdapter;
     RelativeLayout add_gst;
@@ -52,12 +53,19 @@ public class RestruntGST extends AppCompatActivity {
             shop_name = extras.getString("shop_name");
 
         }
+        gst_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gst_swipe.setRefreshing(false);
+                getGst();
 
+            }
+        });
         add_gst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent i=new Intent(RestruntGST.this,AddGst.class);
-                startActivity(i);*/
+                Intent i=new Intent(RestruntGST.this,AddGst.class);
+                startActivity(i);
             }
         });
         getGst();

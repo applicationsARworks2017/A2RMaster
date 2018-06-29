@@ -66,6 +66,11 @@
             android:parentActivityName=".Activity.Home"
             android:theme="@style/AppThemetwo" />
         <activity
+            android:name=".Activity.AddGst"
+            android:label="Add Gst"
+            android:parentActivityName=".Activity.Home"
+            android:theme="@style/AppThemetwo" />
+        <activity
             android:name=".Activity.ItemType"
             android:label="Item List"
             android:parentActivityName=".Activity.ChooseProduct"

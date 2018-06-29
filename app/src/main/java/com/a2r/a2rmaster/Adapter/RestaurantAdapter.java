@@ -96,6 +96,7 @@ public class RestaurantAdapter extends BaseAdapter{
             Picasso.with(_context)
                     .load(photo1)
                     .placeholder(R.drawable.error)
+                    .resize(150,150)
                     .error(R.drawable.error).into(holder.iv_logo);
         }        holder.phone.setText("Phone :"+mobile.trim().toString());
         holder.details.setText("Address :"+_pos.getAddress().trim().toString());
