@@ -61,7 +61,7 @@ public class AddUser extends AppCompatActivity {
         spin_usertype=(Spinner)findViewById(R.id.spin_usertype);
         VisitorsType = new ArrayList<String>();
         VisitorsType.add("-- Select User Type --");
-        VisitorsType.add("Admin");
+        VisitorsType.add("Manager");
         VisitorsType.add("Cashier");
         VisitorsType.add("Dinning");
         VisitorsType.add("Kitchen");
