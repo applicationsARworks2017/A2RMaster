@@ -19,7 +19,7 @@
             android:layout_width="110dp"
             android:id="@+id/it_image"
             android:layout_height="110dp"
-            android:background="@drawable/masroom"
+            android:background="@drawable/logo"
             android:layout_marginLeft="10dp"/>
         <TextView
             android:layout_width="wrap_content"

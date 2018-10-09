@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.a2r.a2rmaster.Fragment.AccountsReport;
 import com.a2r.a2rmaster.Fragment.HomeFragment;
 import com.a2r.a2rmaster.Fragment.ProductFragment;
 import com.a2r.a2rmaster.Fragment.ProfileFragment;
@@ -34,6 +35,7 @@ public class Home extends AppCompatActivity {
     private static final String TAG_CATEGORY = "Category List";
     private static final String TAG_SUPPORT = "Support";
     private static final String TAG_PROFILE = "Profile";
+    private static final String TAG_ACCOUNTS = "Accounts";
     public static String CURRENT_TAG = TAG_HOME;
     public static int item_id;
     private Handler mHandler;
@@ -128,7 +130,10 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.profile:
                         item_id = R.id.profile;
-                        CURRENT_TAG = TAG_PROFILE;
+                        break;
+                        case R.id.reports:
+                        item_id = R.id.reports;
+                        CURRENT_TAG = TAG_ACCOUNTS;
                         break;
                     default:
                         CURRENT_TAG=TAG_HOME;
@@ -210,7 +215,7 @@ public class Home extends AppCompatActivity {
             case R.id.nav_home:
                 // home
                HomeFragment homeFragment = new HomeFragment();
-                toolbar.setTitle("Home");
+                toolbar.setTitle("My Eateries");
                 return homeFragment;
             case R.id.a2r_users:
                 // Entry for visitors
@@ -231,6 +236,11 @@ public class Home extends AppCompatActivity {
                 ProfileFragment prof_frag = new ProfileFragment();
                 toolbar.setTitle("Profile");
                 return prof_frag;
+            case R.id.reports:
+                // Entry for visitors
+                AccountsReport accountsReport = new AccountsReport();
+                toolbar.setTitle("Accounts");
+                return accountsReport;
 
             default:
                 return new HomeFragment();

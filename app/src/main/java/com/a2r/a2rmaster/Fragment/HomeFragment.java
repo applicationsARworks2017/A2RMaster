@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     SwipeRefreshLayout rest_swipe;
     ListView rest_list;
     String user_id;
-    ArrayList<Restaurants> rList;
+    public static ArrayList<Restaurants> rList;
     RestaurantAdapter restaurantAdapter;
 
     public HomeFragment() {

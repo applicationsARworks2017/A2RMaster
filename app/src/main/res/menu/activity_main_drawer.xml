@@ -30,7 +30,7 @@
             android:id="@+id/reports"
             android:icon="@mipmap/ic_receipt_black_24dp"
             android:iconTint="@color/colorPrimary"
-            android:title="Reports" />
+            android:title="Account Reports" />
 
         <item
             android:id="@+id/resident_support"

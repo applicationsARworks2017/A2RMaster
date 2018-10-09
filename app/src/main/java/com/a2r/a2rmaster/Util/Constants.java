@@ -31,6 +31,7 @@ public class Constants {
     public static String PRODUCTTYPE="ProductTypes/index.json";
     public static String PRODUCTSCATEGORY="products/index.json";
     public static String EDITRESSTRAUNT="shops/edit.json";
+    public static String ORDER_SUMMERY="OrderSummaries/indexNew.json";
     public static String USERLIST="users/index.json";
     public static String ADDUSER="users/add.json";
     public static String FCM_ID="fcmid";
